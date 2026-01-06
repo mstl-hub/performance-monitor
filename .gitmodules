@@ -1,0 +1,3 @@
+[submodule "Firmware/TafcoMcuCore"]
+	path = Firmware/TafcoMcuCore
+	url = https://github.com/XYphrodite/TafcoMcuCore
