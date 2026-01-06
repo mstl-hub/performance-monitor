@@ -1,0 +1,22 @@
+Error in 0x1000: 'Count Label' must be 'NMT'
+Error in 0x1001: 'Count Label' must be 'EM'
+Error in 0x1014: 'Count Label' must be 'EM_PROD'
+Error in 0x1400: 'Count Label' must be 'RPDO'
+Error in 0x1401: 'Count Label' must be 'RPDO'
+Error in 0x1402: 'Count Label' must be 'RPDO'
+Error in 0x1403: 'Count Label' must be 'RPDO'
+Error in 0x1800: 'Count Label' must be 'TPDO'
+Error in 0x1801: 'Count Label' must be 'TPDO'
+Error in 0x1802: 'Count Label' must be 'TPDO'
+Error in 0x1803: 'Count Label' must be 'TPDO'
+Error in 0x1804: 'Count Label' must be 'TPDO'
+Error in 0x1805: 'Count Label' must be 'TPDO'
+Error in 0x1806: 'Count Label' must be 'TPDO'
+Error in 0x1807: 'Count Label' must be 'TPDO'
+Error in 0x1808: 'Count Label' must be 'TPDO'
+Error in 0x2201: Default value must be defined on all ARRAY elements or must be undefined on all ARRAY elements!
+Error in 0x2201: Default value must be defined on all ARRAY elements or must be undefined on all ARRAY elements!
+Error in 0x2201: Attributes of elements in ARRAY must be equal
+Error in 0x2201: Data type of elements in ARRAY must be equal!
+Error in 0x2201: Default value must be defined on all ARRAY elements or must be undefined on all ARRAY elements!
+Error in 0x2201: Attributes of elements in ARRAY must be equal

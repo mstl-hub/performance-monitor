@@ -1,0 +1,1618 @@
+[FileInfo]
+CreatedBy=ahaupt
+ModifiedBy=ahaupt
+Description=SKOV Type 15
+CreationTime=09:02AM
+CreationDate=01-24-2019
+ModificationTime=09:02AM
+ModificationDate=01-24-2019
+FileName=skov_io_type_15.eds
+FileVersion=1
+FileRevision=0
+EDSVersion=5.0
+
+[DeviceInfo]
+VendorName=SKOV A/S
+VendorNumber=1116
+ProductName=SKOV_Type_15
+BaudRate_10=0
+BaudRate_20=0
+BaudRate_50=0
+BaudRate_125=1
+BaudRate_250=0
+BaudRate_500=0
+BaudRate_800=0
+BaudRate_1000=0
+SimpleBootUpMaster=0
+SimpleBootUpSlave=0
+Granularity=0
+DynamicChannelsSupported=0
+CompactPDO=0
+GroupMessaging=0
+NrOfRXPDO=3
+NrOfTXPDO=5
+LSS_Supported=0
+
+[DummyUsage]
+Dummy0001=0
+Dummy0002=0
+Dummy0003=0
+Dummy0004=0
+Dummy0005=1
+Dummy0006=0
+Dummy0007=0
+
+[Comments]
+Lines=4
+Line1=CANopen IO device made by SKOV
+Line2=Type 3  = 8x Analog Out, 8x Analog In and 10 Relay outputs and jumpers
+Line3=Type 15 = 8x Analog Out, 8x Analog In and 10 Relay outputs
+Line4=Type  4 = 8x Analog Out, 8x Analog In
+
+[MandatoryObjects]
+SupportedObjects=3
+1=0x1000
+2=0x1001
+3=0x1018
+
+[1000]
+ParameterName=Device Type
+ObjectType=0x7
+DataType=0x0007
+AccessType=ro
+DefaultValue=0x0E0191
+PDOMapping=0
+
+[1001]
+ParameterName=Error Register
+ObjectType=0x7
+DataType=0x0005
+AccessType=ro
+DefaultValue=0x0
+PDOMapping=0
+
+[1018]
+ParameterName=Identity Object
+ObjectType=0x9
+SubNumber=5
+
+[1018sub0]
+ParameterName=Largest Sub-index Supported
+ObjectType=0x7
+DataType=0x0005
+AccessType=ro
+DefaultValue=4
+PDOMapping=0
+LowLimit=1
+HighLimit=3
+
+[1018sub1]
+ParameterName=Vendor ID
+ObjectType=0x7
+DataType=0x0007
+AccessType=ro
+DefaultValue=1116
+PDOMapping=0
+
+[1018sub2]
+ParameterName=Product Code
+ObjectType=0x7
+DataType=0x0007
+AccessType=ro
+PDOMapping=0
+
+[1018sub3]
+ParameterName=Revision Number (Serial Number)
+ObjectType=0x7
+DataType=0x0007
+AccessType=ro
+PDOMapping=0
+
+[1018sub4]
+ParameterName=Serial Number (Order Number)
+ObjectType=0x7
+DataType=0x0007
+AccessType=ro
+PDOMapping=0
+
+[OptionalObjects]
+SupportedObjects=32
+1=0x1002
+2=0x1008
+3=0x1009
+4=0x100A
+5=0x100C
+6=0x100D
+7=0x1014
+8=0x1015
+9=0x1029
+10=0x1400
+11=0x1401
+12=0x1402
+13=0x1600
+14=0x1601
+15=0x1602
+16=0x1800
+17=0x1801
+18=0x1802
+19=0x1803
+20=0x1804
+21=0x1A00
+22=0x1A01
+23=0x1A02
+24=0x1A03
+25=0x1A04
+26=0x6000
+27=0x6006
+28=0x6120
+29=0x6300
+30=0x6401
+31=0x6411
+32=0x6426
+
+[1002]
+ParameterName=Manufacturer Status Register
+ObjectType=0x7
+DataType=0x0007
+AccessType=ro
+PDOMapping=0
+
+[1008]
+ParameterName=Manufacturer Device Name
+ObjectType=0x7
+DataType=0x0009
+AccessType=const
+DefaultValue=S150
+PDOMapping=0
+
+[1009]
+ParameterName=Manufacturer Hardware Version
+ObjectType=0x7
+DataType=0x0009
+AccessType=const
+DefaultValue=1
+PDOMapping=0
+
+[100A]
+ParameterName=Manufacturer Software Version
+ObjectType=0x7
+DataType=0x0009
+AccessType=const
+PDOMapping=0
+
+[100C]
+ParameterName=Guard Time
+ObjectType=0x7
+DataType=0x0006
+AccessType=rw
+DefaultValue=0
+PDOMapping=0
+LowLimit=0
+HighLimit=0xFFFF
+
+[100D]
+ParameterName=Life Time Factor
+ObjectType=0x7
+DataType=0x0005
+AccessType=rw
+DefaultValue=0
+PDOMapping=0
+LowLimit=0
+HighLimit=0xFF
+
+[1014]
+ParameterName=COB-ID EMCY
+ObjectType=0x7
+DataType=0x0007
+AccessType=rw
+DefaultValue=$NODEID+0x80
+PDOMapping=0
+
+[1015]
+ParameterName=Inhibit Time Emergency
+ObjectType=0x7
+DataType=0x0006
+AccessType=rw
+DefaultValue=0
+PDOMapping=0
+
+[1029]
+ParameterName=Error Behaviour
+ObjectType=0x8
+SubNumber=2
+
+[1029sub0]
+ParameterName=Largest Sub-index Supported
+ObjectType=0x7
+DataType=0x0005
+AccessType=ro
+DefaultValue=1
+PDOMapping=0
+
+[1029sub1]
+ParameterName=Communication Error
+ObjectType=0x7
+DataType=0x0005
+AccessType=rw
+DefaultValue=0
+PDOMapping=0
+
+[1400]
+ParameterName=Rx PDO 0 - Relays
+ObjectType=0x9
+SubNumber=4
+
+[1400sub0]
+ParameterName=Largest Sub-index Supported
+ObjectType=0x7
+DataType=0x0005
+AccessType=ro
+DefaultValue=3
+PDOMapping=0
+LowLimit=0x02
+HighLimit=0x05
+
+[1400sub1]
+ParameterName=COB ID
+ObjectType=0x7
+DataType=0x0007
+AccessType=rw
+DefaultValue=$NODEID+0x200
+PDOMapping=0
+LowLimit=0x00000001
+HighLimit=0xFFFFFFFF
+
+[1400sub2]
+ParameterName=Transmission Type
+ObjectType=0x7
+DataType=0x0005
+AccessType=ro
+DefaultValue=255
+PDOMapping=0
+
+[1400sub3]
+ParameterName=Inhibit Time
+ObjectType=0x7
+DataType=0x0006
+AccessType=rw
+DefaultValue=0
+PDOMapping=0
+
+[1401]
+ParameterName=Rx PDO 1 - Analog Output 1-4
+ObjectType=0x9
+SubNumber=4
+
+[1401sub0]
+ParameterName=Largest Sub-index Supported
+ObjectType=0x7
+DataType=0x0005
+AccessType=ro
+DefaultValue=3
+PDOMapping=0
+LowLimit=0x02
+HighLimit=0x05
+
+[1401sub1]
+ParameterName=COB ID
+ObjectType=0x7
+DataType=0x0007
+AccessType=rw
+DefaultValue=$NODEID+0x300
+PDOMapping=0
+LowLimit=0x00000001
+HighLimit=0xFFFFFFFF
+
+[1401sub2]
+ParameterName=Transmission Type
+ObjectType=0x7
+DataType=0x0005
+AccessType=ro
+DefaultValue=255
+PDOMapping=0
+
+[1401sub3]
+ParameterName=Inhibit Time
+ObjectType=0x7
+DataType=0x0006
+AccessType=rw
+DefaultValue=0
+PDOMapping=0
+
+[1402]
+ParameterName=Rx PDO 2 - Analog Output 5-8
+ObjectType=0x9
+SubNumber=4
+
+[1402sub0]
+ParameterName=Largest Sub-index Supported
+ObjectType=0x7
+DataType=0x0005
+AccessType=ro
+DefaultValue=3
+PDOMapping=0
+LowLimit=0x02
+HighLimit=0x05
+
+[1402sub1]
+ParameterName=COB ID
+ObjectType=0x7
+DataType=0x0007
+AccessType=rw
+DefaultValue=$NODEID+0x400
+PDOMapping=0
+LowLimit=0x00000001
+HighLimit=0xFFFFFFFF
+
+[1402sub2]
+ParameterName=Transmission Type
+ObjectType=0x7
+DataType=0x0005
+AccessType=ro
+DefaultValue=255
+PDOMapping=0
+
+[1402sub3]
+ParameterName=Inhibit Time
+ObjectType=0x7
+DataType=0x0006
+AccessType=rw
+DefaultValue=0x0000
+PDOMapping=0
+
+[1600]
+ParameterName=Rx PDO 0 Mapping - Relays
+ObjectType=0x9
+SubNumber=2
+
+[1600sub0]
+ParameterName=Largest Sub-index Supported
+ObjectType=0x7
+DataType=0x0005
+AccessType=const
+DefaultValue=1
+PDOMapping=0
+LowLimit=0
+HighLimit=1
+
+[1600sub1]
+ParameterName=Mapping Relays
+ObjectType=0x7
+DataType=0x0007
+AccessType=const
+DefaultValue=0x63000110
+PDOMapping=0
+
+[1601]
+ParameterName=Rx PDO 1 Mapping - Analog Output
+ObjectType=0x9
+SubNumber=5
+
+[1601sub0]
+ParameterName=Largest Sub-index Supported
+ObjectType=0x7
+DataType=0x0005
+AccessType=const
+DefaultValue=4
+PDOMapping=0
+LowLimit=0
+HighLimit=4
+
+[1601sub1]
+ParameterName=Mapping AO 1
+ObjectType=0x7
+DataType=0x0007
+AccessType=const
+DefaultValue=0x64110110
+PDOMapping=0
+
+[1601sub2]
+ParameterName=Mapping AO 2
+ObjectType=0x7
+DataType=0x0007
+AccessType=const
+DefaultValue=0x64110210
+PDOMapping=0
+
+[1601sub3]
+ParameterName=Mapping AO 3
+ObjectType=0x7
+DataType=0x0007
+AccessType=const
+DefaultValue=0x64110310
+PDOMapping=0
+
+[1601sub4]
+ParameterName=Mapping AO 4
+ObjectType=0x7
+DataType=0x0007
+AccessType=const
+DefaultValue=0x64110410
+PDOMapping=0
+
+[1602]
+ParameterName=Rx PDO 2 Mapping - Analog Output
+ObjectType=0x9
+SubNumber=5
+
+[1602sub0]
+ParameterName=Largest Sub-index Supported
+ObjectType=0x7
+DataType=0x0005
+AccessType=const
+DefaultValue=4
+PDOMapping=0
+LowLimit=0
+HighLimit=4
+
+[1602sub1]
+ParameterName=Mapping AO 5
+ObjectType=0x7
+DataType=0x0007
+AccessType=const
+DefaultValue=0x64110510
+PDOMapping=0
+
+[1602sub2]
+ParameterName=Mapping AO 6
+ObjectType=0x7
+DataType=0x0007
+AccessType=const
+DefaultValue=0x64110610
+PDOMapping=0
+
+[1602sub3]
+ParameterName=Mapping AO 7
+ObjectType=0x7
+DataType=0x0007
+AccessType=const
+DefaultValue=0x64110710
+PDOMapping=0
+
+[1602sub4]
+ParameterName=Mapping AO 8
+ObjectType=0x7
+DataType=0x0007
+AccessType=const
+DefaultValue=0x64110810
+PDOMapping=0
+
+[1800]
+ParameterName=Tx PDO 0 - Digital Inputs
+ObjectType=0x9
+SubNumber=5
+
+[1800sub0]
+ParameterName=Largest Sub-index Supported
+ObjectType=0x7
+DataType=0x0005
+AccessType=ro
+DefaultValue=5
+PDOMapping=0
+LowLimit=0x02
+HighLimit=0x06
+
+[1800sub1]
+ParameterName=COB ID
+ObjectType=0x7
+DataType=0x0007
+AccessType=rw
+DefaultValue=$NODEID+0x80000180
+PDOMapping=0
+LowLimit=0x00000001
+HighLimit=0xFFFFFFFF
+
+[1800sub2]
+ParameterName=Transmission Type
+ObjectType=0x7
+DataType=0x0005
+AccessType=ro
+DefaultValue=255
+PDOMapping=0
+
+[1800sub3]
+ParameterName=Inhibit Time
+ObjectType=0x7
+DataType=0x0006
+AccessType=rw
+DefaultValue=100
+PDOMapping=0
+
+[1800sub5]
+ParameterName=Event Timer
+ObjectType=0x7
+DataType=0x0006
+AccessType=rw
+DefaultValue=0
+PDOMapping=0
+
+[1801]
+ParameterName=Tx PDO 1 - Analog Inputs 1 - 4
+ObjectType=0x9
+SubNumber=5
+
+[1801sub0]
+ParameterName=Largest Sub-index Supported
+ObjectType=0x7
+DataType=0x0005
+AccessType=ro
+DefaultValue=5
+PDOMapping=0
+LowLimit=0x02
+HighLimit=0x06
+
+[1801sub1]
+ParameterName=COB ID
+ObjectType=0x7
+DataType=0x0007
+AccessType=rw
+DefaultValue=$NODEID+0x80000280
+PDOMapping=0
+LowLimit=0x00000001
+HighLimit=0xFFFFFFFF
+
+[1801sub2]
+ParameterName=Transmission Type
+ObjectType=0x7
+DataType=0x0005
+AccessType=ro
+DefaultValue=255
+PDOMapping=0
+
+[1801sub3]
+ParameterName=Inhibit Time
+ObjectType=0x7
+DataType=0x0006
+AccessType=rw
+DefaultValue=100
+PDOMapping=0
+
+[1801sub5]
+ParameterName=Event Timer
+ObjectType=0x7
+DataType=0x0006
+AccessType=rw
+DefaultValue=0
+PDOMapping=0
+
+[1802]
+ParameterName=Tx PDO 2 - Analog Inputs 5 - 8
+ObjectType=0x9
+SubNumber=5
+
+[1802sub0]
+ParameterName=Largest Sub-index Supported
+ObjectType=0x7
+DataType=0x0005
+AccessType=ro
+DefaultValue=5
+PDOMapping=0
+LowLimit=0x02
+HighLimit=0x06
+
+[1802sub1]
+ParameterName=COB ID
+ObjectType=0x7
+DataType=0x0007
+AccessType=rw
+DefaultValue=$NODEID+0x80000380
+PDOMapping=0
+LowLimit=0x00000001
+HighLimit=0xFFFFFFFF
+
+[1802sub2]
+ParameterName=Transmission Type
+ObjectType=0x7
+DataType=0x0005
+AccessType=ro
+DefaultValue=255
+PDOMapping=0
+
+[1802sub3]
+ParameterName=Inhibit Time
+ObjectType=0x7
+DataType=0x0006
+AccessType=rw
+DefaultValue=100
+PDOMapping=0
+
+[1802sub5]
+ParameterName=Event Timer
+ObjectType=0x7
+DataType=0x0006
+AccessType=rw
+DefaultValue=0
+PDOMapping=0
+
+[1803]
+ParameterName=Tx PDO 3 - Counter 1 - 4
+ObjectType=0x9
+SubNumber=5
+
+[1803sub0]
+ParameterName=Largest Sub-index Supported
+ObjectType=0x7
+DataType=0x0005
+AccessType=ro
+DefaultValue=5
+PDOMapping=0
+LowLimit=0x02
+HighLimit=0x06
+
+[1803sub1]
+ParameterName=COB ID
+ObjectType=0x7
+DataType=0x0007
+AccessType=rw
+DefaultValue=$NODEID+0x80000480
+PDOMapping=0
+LowLimit=0x00000001
+HighLimit=0xFFFFFFFF
+
+[1803sub2]
+ParameterName=Transmission Type
+ObjectType=0x7
+DataType=0x0005
+AccessType=ro
+DefaultValue=255
+PDOMapping=0
+
+[1803sub3]
+ParameterName=Inhibit Time
+ObjectType=0x7
+DataType=0x0006
+AccessType=rw
+DefaultValue=100
+PDOMapping=0
+
+[1803sub5]
+ParameterName=Event Timer
+ObjectType=0x7
+DataType=0x0006
+AccessType=rw
+DefaultValue=0
+PDOMapping=0
+
+[1804]
+ParameterName=Tx PDO 4 - Counter 5 - 8
+ObjectType=0x9
+SubNumber=5
+
+[1804sub0]
+ParameterName=Largest Sub-index Supported
+ObjectType=0x7
+DataType=0x0005
+AccessType=ro
+DefaultValue=5
+PDOMapping=0
+LowLimit=0x02
+HighLimit=0x06
+
+[1804sub1]
+ParameterName=COB ID
+ObjectType=0x7
+DataType=0x0007
+AccessType=rw
+DefaultValue=$NODEID+0x80000190
+PDOMapping=0
+LowLimit=0x00000001
+HighLimit=0xFFFFFFFF
+
+[1804sub2]
+ParameterName=Transmission Type
+ObjectType=0x7
+DataType=0x0005
+AccessType=ro
+DefaultValue=255
+PDOMapping=0
+
+[1804sub3]
+ParameterName=Inhibit Time
+ObjectType=0x7
+DataType=0x0006
+AccessType=rw
+DefaultValue=100
+PDOMapping=0
+
+[1804sub5]
+ParameterName=Event Timer
+ObjectType=0x7
+DataType=0x0006
+AccessType=rw
+DefaultValue=0
+PDOMapping=0
+
+[1A00]
+ParameterName=Tx PDO 0 Mapping- Digital Inputs
+ObjectType=0x9
+SubNumber=2
+
+[1A00sub0]
+ParameterName=Largest Sub-index Supported
+ObjectType=0x7
+DataType=0x0005
+AccessType=const
+DefaultValue=1
+PDOMapping=0
+LowLimit=0
+HighLimit=1
+
+[1A00sub1]
+ParameterName=Digital Inputs
+ObjectType=0x7
+DataType=0x0007
+AccessType=const
+DefaultValue=0x60000108
+PDOMapping=0
+
+[1A01]
+ParameterName=Tx PDO 1 Mapping - Analog Inputs 1 - 4
+ObjectType=0x9
+SubNumber=5
+
+[1A01sub0]
+ParameterName=Largest Sub-index Supported
+ObjectType=0x7
+DataType=0x0005
+AccessType=const
+DefaultValue=4
+PDOMapping=0
+LowLimit=0
+HighLimit=4
+
+[1A01sub1]
+ParameterName=Analog Input 1
+ObjectType=0x7
+DataType=0x0007
+AccessType=const
+DefaultValue=0x64010110
+PDOMapping=0
+
+[1A01sub2]
+ParameterName=Analog Input 2
+ObjectType=0x7
+DataType=0x0007
+AccessType=const
+DefaultValue=0x64010210
+PDOMapping=0
+
+[1A01sub3]
+ParameterName=Analog Input 3
+ObjectType=0x7
+DataType=0x0007
+AccessType=const
+DefaultValue=0x64010310
+PDOMapping=0
+
+[1A01sub4]
+ParameterName=Analog Input 4
+ObjectType=0x7
+DataType=0x0007
+AccessType=const
+DefaultValue=0x64010410
+PDOMapping=0
+
+[1A02]
+ParameterName=Tx PDO 2 Mapping - Analog Inputs 5 - 8
+ObjectType=0x9
+SubNumber=5
+
+[1A02sub0]
+ParameterName=Largest Sub-index Supported
+ObjectType=0x7
+DataType=0x0005
+AccessType=const
+DefaultValue=4
+PDOMapping=0
+LowLimit=0
+HighLimit=4
+
+[1A02sub1]
+ParameterName=Analog Input 5
+ObjectType=0x7
+DataType=0x0007
+AccessType=const
+DefaultValue=0x64010510
+PDOMapping=0
+
+[1A02sub2]
+ParameterName=Analog Input 6
+ObjectType=0x7
+DataType=0x0007
+AccessType=const
+DefaultValue=0x64010610
+PDOMapping=0
+
+[1A02sub3]
+ParameterName=Analog Input 7
+ObjectType=0x7
+DataType=0x0007
+AccessType=const
+DefaultValue=0x64010710
+PDOMapping=0
+
+[1A02sub4]
+ParameterName=Analog Input 8
+ObjectType=0x7
+DataType=0x0007
+AccessType=const
+DefaultValue=0x64010810
+PDOMapping=0
+
+[1A03]
+ParameterName=Tx PDO 3 Mapping - Counter 1 - 4
+ObjectType=0x9
+SubNumber=5
+
+[1A03sub0]
+ParameterName=Largest Sub-index Supported
+ObjectType=0x7
+DataType=0x0005
+AccessType=const
+DefaultValue=4
+PDOMapping=0
+LowLimit=0
+HighLimit=4
+
+[1A03sub1]
+ParameterName=Counter 1
+ObjectType=0x7
+DataType=0x0007
+AccessType=const
+DefaultValue=0x61200110
+PDOMapping=0
+
+[1A03sub2]
+ParameterName=Counter 2
+ObjectType=0x7
+DataType=0x0007
+AccessType=const
+DefaultValue=0x61200210
+PDOMapping=0
+
+[1A03sub3]
+ParameterName=Counter 3
+ObjectType=0x7
+DataType=0x0007
+AccessType=const
+DefaultValue=0x61200310
+PDOMapping=0
+
+[1A03sub4]
+ParameterName=Counter 4
+ObjectType=0x7
+DataType=0x0007
+AccessType=const
+DefaultValue=0x61200410
+PDOMapping=0
+
+[1A04]
+ParameterName=Tx PDO 4 Mapping - Counter 5 - 8
+ObjectType=0x9
+SubNumber=5
+
+[1A04sub0]
+ParameterName=Largest Sub-index Supported
+ObjectType=0x7
+DataType=0x0005
+AccessType=const
+DefaultValue=4
+PDOMapping=0
+LowLimit=0
+HighLimit=4
+
+[1A04sub1]
+ParameterName=Counter 5
+ObjectType=0x7
+DataType=0x0007
+AccessType=const
+DefaultValue=0x61200510
+PDOMapping=0
+
+[1A04sub2]
+ParameterName=Counter 6
+ObjectType=0x7
+DataType=0x0007
+AccessType=const
+DefaultValue=0x61200610
+PDOMapping=0
+
+[1A04sub3]
+ParameterName=Counter 7
+ObjectType=0x7
+DataType=0x0007
+AccessType=const
+DefaultValue=0x61200710
+PDOMapping=0
+
+[1A04sub4]
+ParameterName=Counter 8
+ObjectType=0x7
+DataType=0x0007
+AccessType=const
+DefaultValue=0x61200810
+PDOMapping=0
+
+[6000]
+ParameterName=Digital Input
+ObjectType=0x8
+SubNumber=2
+
+[6000sub0]
+ParameterName=Largest Sub-index Supported
+ObjectType=0x7
+DataType=0x0005
+AccessType=ro
+DefaultValue=1
+PDOMapping=0
+
+[6000sub1]
+ParameterName=Digital Inputs
+ObjectType=0x7
+DataType=0x0005
+AccessType=ro
+PDOMapping=1
+
+[6006]
+ParameterName=Interrupt Mask Any Change
+ObjectType=0x8
+SubNumber=4
+
+[6006sub0]
+ParameterName=Largest Sub-index Supported
+ObjectType=0x7
+DataType=0x0005
+AccessType=ro
+DefaultValue=3
+PDOMapping=0
+
+[6006sub1]
+ParameterName=IAC Dig In
+ObjectType=0x7
+DataType=0x0005
+AccessType=rw
+DefaultValue=255
+
+[6006sub2]
+ParameterName=IAC Counter
+ObjectType=0x7
+DataType=0x0005
+AccessType=rw
+DefaultValue=255
+PDOMapping=0
+
+[6006sub3]
+ParameterName=IAC Analog In
+ObjectType=0x7
+DataType=0x0005
+AccessType=rw
+DefaultValue=255
+PDOMapping=0
+
+[6120]
+ParameterName=Counter
+ObjectType=0x8
+SubNumber=9
+
+[6120sub0]
+ParameterName=Largest Sub-index Supported
+ObjectType=0x7
+DataType=0x0005
+AccessType=ro
+DefaultValue=8
+PDOMapping=0
+
+[6120sub1]
+ParameterName=Counter 1
+ObjectType=0x7
+DataType=0x0006
+AccessType=ro
+PDOMapping=1
+
+[6120sub2]
+ParameterName=Counter 2
+ObjectType=0x7
+DataType=0x0006
+AccessType=ro
+PDOMapping=1
+
+[6120sub3]
+ParameterName=Counter 3
+ObjectType=0x7
+DataType=0x0006
+AccessType=ro
+PDOMapping=1
+
+[6120sub4]
+ParameterName=Counter 4
+ObjectType=0x7
+DataType=0x0006
+AccessType=ro
+PDOMapping=1
+
+[6120sub5]
+ParameterName=Counter 5
+ObjectType=0x7
+DataType=0x0006
+AccessType=ro
+PDOMapping=1
+
+[6120sub6]
+ParameterName=Counter 6
+ObjectType=0x7
+DataType=0x0006
+AccessType=ro
+PDOMapping=1
+
+[6120sub7]
+ParameterName=Counter 7
+ObjectType=0x7
+DataType=0x0006
+AccessType=ro
+PDOMapping=1
+
+[6120sub8]
+ParameterName=Counter 8
+ObjectType=0x7
+DataType=0x0006
+AccessType=ro
+PDOMapping=1
+
+[6300]
+ParameterName=Relay Output
+ObjectType=0x8
+SubNumber=2
+
+[6300sub0]
+ParameterName=Largest Sub-index Supported
+ObjectType=0x7
+DataType=0x0005
+AccessType=ro
+DefaultValue=1
+PDOMapping=0
+
+[6300sub1]
+ParameterName=Relay Outputs
+ObjectType=0x7
+DataType=0x0006
+AccessType=rww
+DefaultValue=0
+PDOMapping=1
+
+[6401]
+ParameterName=Analog Inputs
+ObjectType=0x8
+SubNumber=9
+
+[6401sub0]
+ParameterName=Largest Sub-index Supported
+ObjectType=0x7
+DataType=0x0005
+AccessType=ro
+DefaultValue=0x8
+PDOMapping=0
+
+[6401sub1]
+ParameterName=Analog Input 1
+ObjectType=0x7
+DataType=0x0003
+AccessType=ro
+PDOMapping=1
+
+[6401sub2]
+ParameterName=Analog Input 2
+ObjectType=0x7
+DataType=0x0003
+AccessType=ro
+PDOMapping=1
+
+[6401sub3]
+ParameterName=Analog Input 3
+ObjectType=0x7
+DataType=0x0003
+AccessType=ro
+PDOMapping=1
+
+[6401sub4]
+ParameterName=Analog Input 4
+ObjectType=0x7
+DataType=0x0003
+AccessType=ro
+PDOMapping=1
+
+[6401sub5]
+ParameterName=Analog Input 5
+ObjectType=0x7
+DataType=0x0003
+AccessType=ro
+PDOMapping=1
+
+[6401sub6]
+ParameterName=Analog Input 6
+ObjectType=0x7
+DataType=0x0003
+AccessType=ro
+PDOMapping=1
+
+[6401sub7]
+ParameterName=Analog Input 7
+ObjectType=0x7
+DataType=0x0003
+AccessType=ro
+PDOMapping=1
+
+[6401sub8]
+ParameterName=Analog Input 8
+ObjectType=0x7
+DataType=0x0003
+AccessType=ro
+PDOMapping=1
+
+[6411]
+ParameterName=Analog Output
+ObjectType=0x8
+SubNumber=9
+
+[6411sub0]
+ParameterName=Largest Sub-index Supported
+ObjectType=0x7
+DataType=0x0005
+AccessType=ro
+DefaultValue=8
+PDOMapping=0
+
+[6411sub1]
+ParameterName=Analog Output 1
+ObjectType=0x7
+DataType=0x0003
+AccessType=rww
+DefaultValue=0x0
+PDOMapping=1
+
+[6411sub2]
+ParameterName=Analog Output 2
+ObjectType=0x7
+DataType=0x0003
+AccessType=rww
+DefaultValue=0x0
+PDOMapping=1
+
+[6411sub3]
+ParameterName=Analog Output 3
+ObjectType=0x7
+DataType=0x0003
+AccessType=rww
+DefaultValue=0x0
+PDOMapping=1
+
+[6411sub4]
+ParameterName=Analog Output 4
+ObjectType=0x7
+DataType=0x0003
+AccessType=rww
+DefaultValue=0x0
+PDOMapping=1
+
+[6411sub5]
+ParameterName=Analog Output 5
+ObjectType=0x7
+DataType=0x0003
+AccessType=rww
+DefaultValue=0x0
+PDOMapping=1
+
+[6411sub6]
+ParameterName=Analog Output 6
+ObjectType=0x7
+DataType=0x0003
+AccessType=rww
+DefaultValue=0x0
+PDOMapping=1
+
+[6411sub7]
+ParameterName=Analog Output 7
+ObjectType=0x7
+DataType=0x0003
+AccessType=rww
+DefaultValue=0x0
+PDOMapping=1
+
+[6411sub8]
+ParameterName=Analog Output 8
+ObjectType=0x7
+DataType=0x0003
+AccessType=rww
+DefaultValue=0x0
+PDOMapping=1
+
+[6426]
+ParameterName=Analog Input Interrupt Delta Unsigned
+ObjectType=0x8
+SubNumber=9
+
+[6426sub0]
+ParameterName=Largest Sub-index Supported
+ObjectType=0x7
+DataType=0x0005
+AccessType=ro
+DefaultValue=8
+PDOMapping=0
+
+[6426sub1]
+ParameterName=Delta AI 1
+ObjectType=0x7
+DataType=0x0007
+AccessType=rw
+DefaultValue=15
+PDOMapping=0
+LowLimit=0
+HighLimit=10000
+
+[6426sub2]
+ParameterName=Delta AI 2
+ObjectType=0x7
+DataType=0x0007
+AccessType=rw
+DefaultValue=15
+PDOMapping=0
+LowLimit=0
+HighLimit=10000
+
+[6426sub3]
+ParameterName=Delta AI 3
+ObjectType=0x7
+DataType=0x0007
+AccessType=rw
+DefaultValue=15
+PDOMapping=0
+LowLimit=0
+HighLimit=10000
+
+[6426sub4]
+ParameterName=Delta AI 4
+ObjectType=0x7
+DataType=0x0007
+AccessType=rw
+DefaultValue=15
+PDOMapping=0
+LowLimit=0
+HighLimit=10000
+
+[6426sub5]
+ParameterName=Delta AI 5
+ObjectType=0x7
+DataType=0x0007
+AccessType=rw
+DefaultValue=15
+PDOMapping=0
+LowLimit=0
+HighLimit=10000
+
+[6426sub6]
+ParameterName=Delta AI 6
+ObjectType=0x7
+DataType=0x0007
+AccessType=rw
+DefaultValue=15
+PDOMapping=0
+LowLimit=0
+HighLimit=10000
+
+[6426sub7]
+ParameterName=Delta AI 7
+ObjectType=0x7
+DataType=0x0007
+AccessType=rw
+DefaultValue=15
+PDOMapping=0
+LowLimit=0
+HighLimit=10000
+
+[6426sub8]
+ParameterName=Delta AI 8
+ObjectType=0x7
+DataType=0x0007
+AccessType=rw
+DefaultValue=15
+PDOMapping=0
+LowLimit=0
+HighLimit=10000
+
+[ManufacturerObjects]
+SupportedObjects=6
+1=0x200A
+2=0x2011
+3=0x2101
+4=0x2200
+5=0x2201
+6=0x2202
+
+[200A]
+ParameterName=Reset Counter
+ObjectType=0x9
+SubNumber=9
+
+[200Asub0]
+ParameterName=Largest Sub-index Supported
+ObjectType=0x7
+DataType=0x0005
+AccessType=ro
+DefaultValue=8
+PDOMapping=0
+
+[200Asub1]
+ParameterName=Reset Counter 1
+ObjectType=0x7
+DataType=0x0007
+AccessType=wo
+DefaultValue=8
+PDOMapping=0
+
+[200Asub2]
+ParameterName=Reset Counter 2
+ObjectType=0x7
+DataType=0x0007
+AccessType=wo
+DefaultValue=0x0
+PDOMapping=0
+
+[200Asub3]
+ParameterName=Reset Counter 3
+ObjectType=0x7
+DataType=0x0007
+AccessType=wo
+DefaultValue=0x0
+PDOMapping=0
+
+[200Asub4]
+ParameterName=Reset Counter 4
+ObjectType=0x7
+DataType=0x0007
+AccessType=wo
+DefaultValue=0x0
+PDOMapping=0
+
+[200Asub5]
+ParameterName=Reset Counter 5
+ObjectType=0x7
+DataType=0x0007
+AccessType=wo
+DefaultValue=0x0
+PDOMapping=0
+
+[200Asub6]
+ParameterName=Reset Counter 6
+ObjectType=0x7
+DataType=0x0007
+AccessType=wo
+DefaultValue=0x0
+PDOMapping=0
+
+[200Asub7]
+ParameterName=Reset Counter 7
+ObjectType=0x7
+DataType=0x0007
+AccessType=wo
+DefaultValue=0x0
+PDOMapping=0
+
+[200Asub8]
+ParameterName=Reset Counter 8
+ObjectType=0x7
+DataType=0x0007
+AccessType=wo
+DefaultValue=0x0
+PDOMapping=0
+
+[2011]
+ParameterName=CAN-Error Level
+ObjectType=0x7
+DataType=0x0005
+AccessType=rw
+DefaultValue=2
+PDOMapping=0
+
+[2101]
+ParameterName=Bootloader Information
+ObjectType=0x7
+DataType=0x0007
+AccessType=ro
+PDOMapping=0
+
+[2200]
+ParameterName=Detailed FW Information
+ObjectType=0x9
+SubNumber=8
+
+[2200sub0]
+ParameterName=Largest Sub-index Supported
+ObjectType=0x7
+DataType=0x0005
+AccessType=ro
+DefaultValue=7
+
+[2200sub1]
+ParameterName=Major
+ObjectType=0x7
+DataType=0x0006
+AccessType=const
+PDOMapping=0
+
+[2200sub2]
+ParameterName=Minor
+ObjectType=0x7
+DataType=0x0006
+AccessType=const
+PDOMapping=0
+
+[2200sub3]
+ParameterName=Build
+ObjectType=0x7
+DataType=0x0005
+AccessType=const
+PDOMapping=0
+
+[2200sub4]
+ParameterName=Revision
+ObjectType=0x7
+DataType=0x0005
+AccessType=const
+PDOMapping=0
+
+[2200sub5]
+ParameterName=Phase
+ObjectType=0x7
+DataType=0x0005
+AccessType=const
+PDOMapping=0
+
+[2200sub6]
+ParameterName=Date
+ObjectType=0x7
+DataType=0x0007
+AccessType=const
+PDOMapping=0
+
+[2200sub7]
+ParameterName=Target
+ObjectType=0x7
+DataType=0x0005
+AccessType=const
+PDOMapping=0
+
+[2201]
+ParameterName=Status
+ObjectType=0x9
+SubNumber=5
+
+[2201sub0]
+ParameterName=Largest Sub-index Supported
+ObjectType=0x7
+DataType=0x0005
+AccessType=ro
+DefaultValue=4
+PDOMapping=0
+
+[2201sub1]
+ParameterName=Calibration Status
+ObjectType=0x7
+DataType=0x0005
+AccessType=ro
+PDOMapping=0
+
+[2201sub2]
+ParameterName=Active Protocol (0 = CANopen, 1 = AMACS)
+ObjectType=0x7
+DataType=0x0005
+AccessType=ro
+DefaultValue=0
+PDOMapping=0
+LowLimit=0
+HighLimit=1
+
+[2201sub3]
+ParameterName=ATE Result (0 = SUCCESS for last action)
+ObjectType=0x7
+DataType=0x0005
+AccessType=rw
+DefaultValue=255
+PDOMapping=0
+
+[2201sub4]
+ParameterName=Average loop time (ms)
+ObjectType=0x7
+DataType=0x0006
+AccessType=ro
+DefaultValue=0
+PDOMapping=0
+
+[2202]
+ParameterName=Settings
+ObjectType=0x9
+SubNumber=11
+
+[2202sub0]
+ParameterName=Largest Sub-index Supportet
+ObjectType=0x7
+DataType=0x0005
+AccessType=ro
+DefaultValue=10
+PDOMapping=0
+
+[2202sub1]
+ParameterName=ATE Mode (0xA5A5 to activate)
+ObjectType=0x7
+DataType=0x0006
+AccessType=wo
+DefaultValue=0
+PDOMapping=0
+
+[2202sub2]
+ParameterName=ATE Serial Number (6 digits)
+ObjectType=0x7
+DataType=0x0007
+AccessType=wo
+DefaultValue=0xFFFFFFFF
+PDOMapping=0
+
+[2202sub3]
+ParameterName=ATE Order Number (9 digits)
+ObjectType=0x7
+DataType=0x0007
+AccessType=wo
+DefaultValue=0xFFFFFFFF
+PDOMapping=0
+
+[2202sub4]
+ParameterName=ATE Calibration Number (1 = first AnalogIn/Out)
+ObjectType=0x7
+DataType=0x0005
+AccessType=wo
+DefaultValue=0
+PDOMapping=0
+
+[2202sub5]
+ParameterName=ATE Calibration Type (1 = AnalogInLow, 2 = AnalogInHigh, 3 = AnalogOutLow, 4 = AnalogOutHigh)
+ObjectType=0x7
+DataType=0x0005
+AccessType=wo
+DefaultValue=0
+PDOMapping=0
+
+[2202sub6]
+ParameterName=ATE Calibration Value (Write value, then type, then number to calibrate)
+ObjectType=0x7
+DataType=0x0003
+AccessType=wo
+DefaultValue=0
+PDOMapping=0
+
+[2202sub7]
+ParameterName=ATE Calibration Done (1 = done)
+ObjectType=0x7
+DataType=0x0005
+AccessType=wo
+DefaultValue=0
+PDOMapping=0
+
+[2202sub8]
+ParameterName=ATE Calibration Default Values (1 = force default values)
+ObjectType=0x7
+DataType=0x0005
+AccessType=wo
+PDOMapping=0
+
+[2202sub9]
+ParameterName=ATE Trigger Watchdog (1 = Stop WD)
+ObjectType=0x7
+DataType=0x0005
+AccessType=wo
+DefaultValue=0
+PDOMapping=0
+
+[2202subA]
+ParameterName=ATE Start NodeId test (1 = Start test, 0 = Stop test)
+ObjectType=0x7
+DataType=0x0005
+AccessType=wo
+PDOMapping=0

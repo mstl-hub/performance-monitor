@@ -1,0 +1,42 @@
+{
+    "version": 3,
+    "configurePresets": [
+        {
+            "name": "TAF_default",
+            "hidden": true,
+            "generator": "Ninja Multi-Config",
+            "binaryDir": "${sourceDir}/build/${presetName}",
+            "toolchainFile": "${sourceDir}/cmake/gcc-arm-none-eabi_TAF.cmake",
+            "cacheVariables": {
+                "ADDED_DEF": "-DPIGSTORE_PBLOCK",
+                "CMAKE_EXPORT_COMPILE_COMMANDS": true
+            }
+        },
+        {
+            "name": "TAF_Debug",
+            "inherits": "TAF_default",
+            "cacheVariables": {
+                "CMAKE_BUILD_TYPE": "DEBUG"
+            },
+            "hidden": true
+        },
+        {
+            "name": "TAF_Release",
+            "inherits": "TAF_default",
+            "cacheVariables": {
+                "CMAKE_BUILD_TYPE": "RELEASE"
+            },
+            "hidden": true
+        },
+        {
+            "name": "TAF_Debug peripheral-block bootloader0",
+            "inherits": "TAF_Debug"
+        }
+    ],
+    "buildPresets": [
+        {
+            "name": "TAF_Debug peripheral-block bootloader0",
+            "configurePreset": "TAF_Debug peripheral-block bootloader0"
+        }
+    ]
+}
