@@ -1,0 +1,3 @@
+[submodule "TafcoMcuCore"]
+	path = TafcoMcuCore
+	url = https://github.com/XYphrodite/TafcoMcuCore

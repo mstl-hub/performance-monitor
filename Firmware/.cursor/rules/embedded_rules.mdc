@@ -1,0 +1,54 @@
+---
+alwaysApply: false
+---
+# Core Principles for Embedded C++ Project
+- Use C++17 or later, but stick to a safe subset: no exceptions, no RTTI, no dynamic allocation (new/delete).
+- Follow MISRA C++:2023 guidelines: avoid undefined behavior, prefer static analysis-friendly code.
+- Target: Resource-constrained embedded (e.g., ARM Cortex-M, no heap, limited stack ~1-8KB).
+- Architecture: Bare-metal or RTOS (e.g., FreeRTOS); use RAII for resource management.
+- Performance: Minimize code size and runtime overhead; use constexpr/templates where possible.
+- Safety: All code must be deterministic, thread-safe where applicable; use volatile for hardware access.
+- Testing: Unit tests with GoogleTest (host-side emulation); integration on hardware.
+
+# Naming Conventions
+- Variables: snake_case (e.g., sensor_value).
+- Functions/Methods: snake_case (e.g., read_temperature()).
+- Classes: PascalCase (e.g., TemperatureSensor).
+- Constants: UPPER_SNAKE_CASE (e.g., MAX_SENSOR_READINGS).
+- Files: lowercase_with_underscores.h/cpp (e.g., sensor_driver.cpp).
+
+# Code Style (Clang-Format Integration)
+- Indent: 4 spaces, no tabs.
+- Braces: Allman style (new line for { }).
+- Line length: 80 chars max.
+- Use clang-format: .clang-format in root with BasedOnStyle: LLVM, IndentWidth: 4, BreakBeforeBraces: Allman.
+- Comments: Doxygen-style for public APIs; inline for complex logic. Avoid obvious comments.
+
+# C++ Features Usage
+- Allowed: Classes, templates (compile-time only), constexpr, RAII (constructors/destructors for locks/resources).
+- RAII mandatory for mutexes, interrupts, peripherals (e.g., lock in ctor, unlock in dtor).
+- STL: Limited – std::array, std::optional, std::chrono (no containers with alloc).
+- Prohibited: std::vector, std::string (use fixed arrays/char buffers), exceptions, virtual functions (unless single inheritance, no vtable overhead).
+- Templates: Use for generics (e.g., templated drivers), but avoid deep instantiation to control code bloat.
+- Inline: All small functions; assembly for critical paths if needed.
+
+# Safety & Reliability
+- Volatile: For all hardware registers (e.g., volatile uint32_t *reg = (volatile uint32_t*)0x40000000;).
+- No globals: Prefer singletons in compilation units (static vars/functions).
+- Error handling: Return error codes (enum class ErrorCode); no exceptions.
+- Bounds checking: Always validate array indices, use static_assert for compile-time checks.
+- Preprocessor: Minimal macros; use #define for config (e.g., #ifdef DEBUG), avoid functional macros.
+- Concurrency: If RTOS, use mutexes/semaphors; disable interrupts only in critical sections (<10 cycles).
+
+# Project Structure
+- Folders: src/ (sources), include/ (headers), tests/ (unit tests), docs/ (diagrams).
+- Headers: Include guards (#pragma once), forward declarations to minimize deps.
+- Main: Single entry point (int main()), init peripherals, enter loop or RTOS scheduler.
+- Build: CMake with flags: -Wall -Wextra -Werror -Os -fno-exceptions -fno-rtti -ffunction-sections.
+
+# Cursor-Specific Behaviors
+- When generating code: Always suggest MISRA-compliant snippets; explain deviations.
+- Autocomplete: Prioritize safe types (e.g., uint32_t over int); warn on prohibited features.
+- Refactor: Suggest RAII wrappers for bare C calls; optimize for size first.
+- Chat/Prompts: Assume embedded context; generate tests for every function.
+- Extensions: Recommend C/C++ (Microsoft), Clang-Format, CMake Tools.

@@ -1,0 +1,46 @@
+#ignoring specific directory
+build/
+end-device-cppcheck-build-dir
+/.specstory/**
+#ignoring file extensions
+*.ATWP
+*.docx
+#ignoring log files
+LOG_*.txt
+*.idx
+
+# Python
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+.Python
+*.egg
+*.egg-info/
+dist/
+build/
+*.whl
+
+# Virtual environments
+venv/
+env/
+ENV/
+.venv/
+
+# IDE
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+
+# OS
+.DS_Store
+Thumbs.db
+*.bak
+
+# Kiro IDE
+/.Kiro
+
+# keys
+keys.md

@@ -1,0 +1,573 @@
+---
+alwaysApply: false
+---
+# Code Rules & Style Guide
+
+This document defines the coding standards and conventions to follow when contributing to the TafcoPigstore project.
+
+## 1. File Organization
+
+### Directory Structure
+- `Main/src/` - Main application source files
+- `Main/inc/` - Main application header files
+- `Library/` - Shared libraries and utilities
+- `cmake_proj/` - CMake configuration files
+- `Middlewares/` - Third-party middleware libraries
+
+### File Naming
+- **Headers**: `*.h` - PascalCase with descriptive names (e.g., `UartApp.h`, `CommandHandler.h`)
+- **Sources**: `*.cpp`, `*.c` - Match header name (e.g., `UartApp.cpp`)
+- **CMake**: `*.cmake` - Lowercase with underscores (e.g., `cmake_proj.cmake`)
+
+## 2. Naming Conventions
+
+### Functions
+- **Style**: camelCase starting with lowercase
+- **Examples**: `uartFun()`, `GetMainAppVersion_cmd()`, `SetRtcTime_cmd()`
+
+### Variables
+- **Local variables**: camelCase starting with lowercase
+- **Parameters**: camelCase starting with lowercase
+- **Examples**: `maxTimeS`, `blinkOnce`, `currentTime`
+
+### Types & Classes
+- **Structs**: PascalCase ending with `_t`
+- **Classes**: PascalCase
+- **Enums**: PascalCase
+- **Examples**: `CMD_Map_t`, `UartService`, `AppType`
+
+### Constants & Macros
+- **ALL_CAPS_WITH_UNDERSCORES**
+- **Examples**: `REQUEST_COM_PREFIX`, `FREE_RTOS_IS_IN_USED`, `NVIC_PRIORITY_GROUP_4`
+
+### Files & Directories
+- **PascalCase** for class names and major components
+- **Examples**: `UartApp.h`, `CommandHandler.h`, `Library/Tasks/`
+
+## 3. Code Formatting
+
+### Braces & Indentation
+```cpp
+// Function definitions
+void functionName(type param) {
+    if (condition) {
+        doSomething();
+    }
+}
+
+// Class definitions
+class ClassName {
+public:
+    void method() {
+        // implementation
+    }
+};
+```
+
+### Spacing
+- **4 spaces** for indentation (no tabs)
+- **Spaces around operators**: `a + b`, `x = 5`, `func(arg1, arg2)`
+- **No spaces in function calls**: `function(arg)`, not `function( arg )`
+- **Space after commas**: `func(arg1, arg2, arg3)`
+
+### Line Length
+- **Maximum 120 characters** per line
+- Break long lines appropriately
+
+## 4. Comments & Documentation
+
+### Function Comments
+```cpp
+/**
+ * @brief Brief description of what function does
+ * @param param1 Description of parameter
+ * @param param2 Description of parameter
+ * @retval Description of return value
+ */
+bool functionName(uint8_t* buffer) {
+    // implementation
+}
+```
+
+### Inline Comments
+```cpp
+// Single line comments explain why, not what
+void processData() {
+    uint32_t maxTimeS = GetUpTimeS() + 600; // ten minutes timeout
+    for (uint32_t now = GetUpTimeS(); now < maxTimeS; now = GetUpTimeS()) {
+        // Process data here
+    }
+}
+```
+
+### TODO Comments
+```cpp
+// TODO: Implement this function
+bool placeholderFunction(uint8_t* buff) {
+    // TODO: Add actual implementation
+    return true;
+}
+```
+
+### Section Headers
+```cpp
+// Application identification
+{REQUEST_COM_PREFIX, 0x10, 3, WhatAppIsIt_cmd, MAP_FLGS(0x0, 0x0)},
+
+// Time commands
+{REQUEST_COM_PREFIX, 0x30, 3, GetCurrentTimeMs_cmd, MAP_FLGS(0x0, 0x0)},
+```
+
+## 5. Include Directives
+
+### Order & Grouping
+```cpp
+// System includes first
+#include <stdint.h>
+#include <string.h>
+
+// MCU-specific includes
+#include "at32f403a_407.h"
+#include "at32f403a_407_conf.h"
+
+// Conditional includes
+#ifdef FREE_RTOS_IS_IN_USED
+extern "C" {
+#include <FreeRTOS.h>
+#include <task.h>
+}
+#endif
+
+// Local includes
+#include "UartApi.h"
+#include "Command.h"
+#include "gpio.h"
+```
+
+### Guards
+```cpp
+#ifndef __HEADER_NAME_H__
+#define __HEADER_NAME_H__
+
+// Header content
+
+#endif
+```
+
+## 6. Error Handling & Return Values
+
+### Function Returns
+- Use meaningful return types (`bool`, `error_code_t`, etc.)
+- Return `true`/`false` for success/failure where appropriate
+- Document return value meanings
+
+### Error Checking
+```cpp
+bool SetRtcTime_cmd(uint8_t* buff) {
+    calendar_type newTime = *(reinterpret_cast<calendar_type*>(buff));
+    bool result = rtc_time_set(&newTime) == 0;
+    CmdHandler.SetResponce(result ? SUCCESS_CS : ERROR_CS);
+    return true;
+}
+```
+
+## 7. Memory Management
+
+### Pointers & References
+- Use `reinterpret_cast<>()` for type conversions
+- Prefer references over pointers when possible
+- Check for null pointers when necessary
+
+### Arrays & Buffers
+- Use meaningful buffer sizes
+- Document buffer size requirements
+- Zero-initialize buffers when needed
+
+## 8. Embedded-Specific Rules
+
+### FreeRTOS Integration
+- Use task names that match function names
+- Include proper task delays to prevent starvation
+- Handle task parameters with `(void)parameters;`
+
+### Hardware Abstraction
+- Use HAL functions consistently
+- Document hardware-specific behavior
+- Handle peripheral clock enables properly
+
+### Watchdog Integration
+```cpp
+// Include watchdog notifications
+wdt_notify_to_subject({.taskName = true});
+vTaskDelay(delayTime);
+```
+
+## 9. Build System (CMake)
+
+### File Organization
+- Keep `CMakeLists.txt` clean and minimal
+- Use `include()` for complex configurations
+- Separate concerns into different `.cmake` files
+
+### Variable Naming
+```cmake
+set(MCU_TYPE "AT32F407VGT7")
+set(SHARED_LIB_PATH ${CMAKE_CURRENT_SOURCE_DIR}/../TafcoMcuCore)
+set(sources_SRCS)
+```
+
+## 10. Documentation
+
+### README Files
+- Use Markdown format
+- Include build instructions
+- Document API usage
+
+### Code Documentation
+- Document public APIs thoroughly
+- Explain complex algorithms
+- Include usage examples
+
+## 11. Version Control
+
+### Commit Messages
+- Use imperative mood: "Add feature" not "Added feature"
+- Be descriptive but concise
+- Reference issue numbers when applicable
+
+### Branch Naming
+- `feature/feature-name` for new features
+- `bugfix/bug-description` for bug fixes
+- `hotfix/critical-fix` for urgent fixes
+
+## 12. Code Quality
+
+### Compiler Warnings
+- Treat warnings as errors (`-Werror`)
+- Fix all compiler warnings before committing
+- Use appropriate warning suppressions when necessary
+
+### Static Analysis
+- Run static analysis tools regularly
+- Fix identified issues
+- Document false positives
+
+### Testing
+- Test embedded code on target hardware
+- Verify peripheral interactions
+- Test error conditions
+
+## 13. Language-Specific Rules
+
+### C++ Features
+- Use C++20 standard
+- Prefer `nullptr` over `NULL`
+- Use RAII where appropriate
+- Avoid exceptions in embedded code
+
+### C Compatibility
+- Maintain C compatibility where needed
+- Use `extern "C"` blocks appropriately
+- Avoid C++ features that complicate C integration
+
+## 14. Code Review Guidelines
+
+### What to Check
+- [ ] Naming conventions followed
+- [ ] Code formatting consistent
+- [ ] Comments adequate and clear
+- [ ] Error handling appropriate
+- [ ] Memory management correct
+- [ ] Hardware interactions safe
+- [ ] Build system updated if needed
+
+### Automated Checks
+- Compiler warnings/errors
+- Static analysis results
+- Code formatting compliance
+- Build success on all targets
+# Code Rules & Style Guide
+
+This document defines the coding standards and conventions to follow when contributing to the TafcoPigstore project.
+
+## 1. File Organization
+
+### Directory Structure
+- `Main/src/` - Main application source files
+- `Main/inc/` - Main application header files
+- `Library/` - Shared libraries and utilities
+- `cmake_proj/` - CMake configuration files
+- `Middlewares/` - Third-party middleware libraries
+
+### File Naming
+- **Headers**: `*.h` - PascalCase with descriptive names (e.g., `UartApp.h`, `CommandHandler.h`)
+- **Sources**: `*.cpp`, `*.c` - Match header name (e.g., `UartApp.cpp`)
+- **CMake**: `*.cmake` - Lowercase with underscores (e.g., `cmake_proj.cmake`)
+
+## 2. Naming Conventions
+Мне
+### Functions
+- **Style**: camelCase starting with lowercase
+- **Examples**: `uartFun()`, `GetMainAppVersion_cmd()`, `SetRtcTime_cmd()`
+
+### Variables
+- **Local variables**: camelCase starting with lowercase
+- **Parameters**: camelCase starting with lowercase
+- **Examples**: `maxTimeS`, `blinkOnce`, `currentTime`
+
+### Types & Classes
+- **Structs**: PascalCase ending with `_t`
+- **Classes**: PascalCase
+- **Enums**: PascalCase
+- **Examples**: `CMD_Map_t`, `UartService`, `AppType`
+
+### Constants & Macros
+- **ALL_CAPS_WITH_UNDERSCORES**
+- **Examples**: `REQUEST_COM_PREFIX`, `FREE_RTOS_IS_IN_USED`, `NVIC_PRIORITY_GROUP_4`
+
+### Files & Directories
+- **PascalCase** for class names and major components
+- **Examples**: `UartApp.h`, `CommandHandler.h`, `Library/Tasks/`
+
+## 3. Code Formatting
+
+### Braces & Indentation
+```cpp
+// Function definitions
+void functionName(type param) {
+    if (condition) {
+        doSomething();
+    }
+}
+
+// Class definitions
+class ClassName {
+public:
+    void method() {
+        // implementation
+    }
+};
+```
+
+### Spacing
+- **4 spaces** for indentation (no tabs)
+- **Spaces around operators**: `a + b`, `x = 5`, `func(arg1, arg2)`
+- **No spaces in function calls**: `function(arg)`, not `function( arg )`
+- **Space after commas**: `func(arg1, arg2, arg3)`
+
+### Line Length
+- **Maximum 120 characters** per line
+- Break long lines appropriately
+
+## 4. Comments & Documentation
+
+### Function Comments
+```cpp
+/**
+ * @brief Brief description of what function does
+ * @param param1 Description of parameter
+ * @param param2 Description of parameter
+ * @retval Description of return value
+ */
+bool functionName(uint8_t* buffer) {
+    // implementation
+}
+```
+
+### Inline Comments
+```cpp
+// Single line comments explain why, not what
+void processData() {
+    uint32_t maxTimeS = GetUpTimeS() + 600; // ten minutes timeout
+    for (uint32_t now = GetUpTimeS(); now < maxTimeS; now = GetUpTimeS()) {
+        // Process data here
+    }
+}
+```
+
+### TODO Comments
+```cpp
+// TODO: Implement this function
+bool placeholderFunction(uint8_t* buff) {
+    // TODO: Add actual implementation
+    return true;
+}
+```
+
+### Section Headers
+```cpp
+// Application identification
+{REQUEST_COM_PREFIX, 0x10, 3, WhatAppIsIt_cmd, MAP_FLGS(0x0, 0x0)},
+
+// Time commands
+{REQUEST_COM_PREFIX, 0x30, 3, GetCurrentTimeMs_cmd, MAP_FLGS(0x0, 0x0)},
+```
+
+## 5. Include Directives
+
+### Order & Grouping
+```cpp
+// System includes first
+#include <stdint.h>
+#include <string.h>
+
+// MCU-specific includes
+#include "at32f403a_407.h"
+#include "at32f403a_407_conf.h"
+
+// Conditional includes
+#ifdef FREE_RTOS_IS_IN_USED
+extern "C" {
+#include <FreeRTOS.h>
+#include <task.h>
+}
+#endif
+
+// Local includes
+#include "UartApi.h"
+#include "Command.h"
+#include "gpio.h"
+```
+
+### Guards
+```cpp
+#ifndef __HEADER_NAME_H__
+#define __HEADER_NAME_H__
+
+// Header content
+
+#endif
+```
+
+## 6. Error Handling & Return Values
+
+### Function Returns
+- Use meaningful return types (`bool`, `error_code_t`, etc.)
+- Return `true`/`false` for success/failure where appropriate
+- Document return value meanings
+
+### Error Checking
+```cpp
+bool SetRtcTime_cmd(uint8_t* buff) {
+    calendar_type newTime = *(reinterpret_cast<calendar_type*>(buff));
+    bool result = rtc_time_set(&newTime) == 0;
+    CmdHandler.SetResponce(result ? SUCCESS_CS : ERROR_CS);
+    return true;
+}
+```
+
+## 7. Memory Management
+
+### Pointers & References
+- Use `reinterpret_cast<>()` for type conversions
+- Prefer references over pointers when possible
+- Check for null pointers when necessary
+
+### Arrays & Buffers
+- Use meaningful buffer sizes
+- Document buffer size requirements
+- Zero-initialize buffers when needed
+
+## 8. Embedded-Specific Rules
+
+### FreeRTOS Integration
+- Use task names that match function names
+- Include proper task delays to prevent starvation
+- Handle task parameters with `(void)parameters;`
+
+### Hardware Abstraction
+- Use HAL functions consistently
+- Document hardware-specific behavior
+- Handle peripheral clock enables properly
+
+### Watchdog Integration
+```cpp
+// Include watchdog notifications
+wdt_notify_to_subject({.taskName = true});
+vTaskDelay(delayTime);
+```
+
+## 9. Build System (CMake)
+
+### File Organization
+- Keep `CMakeLists.txt` clean and minimal
+- Use `include()` for complex configurations
+- Separate concerns into different `.cmake` files
+
+### Variable Naming
+```cmake
+set(MCU_TYPE "AT32F407VGT7")
+set(SHARED_LIB_PATH ${CMAKE_CURRENT_SOURCE_DIR}/../TafcoMcuCore)
+set(sources_SRCS)
+```
+
+## 10. Documentation
+
+### README Files
+- Use Markdown format
+- Include build instructions
+- Document API usage
+
+### Code Documentation
+- Document public APIs thoroughly
+- Explain complex algorithms
+- Include usage examples
+
+## 11. Version Control
+
+### Commit Messages
+- Use imperative mood: "Add feature" not "Added feature"
+- Be descriptive but concise
+- Reference issue numbers when applicable
+
+### Branch Naming
+- `feature/feature-name` for new features
+- `bugfix/bug-description` for bug fixes
+- `hotfix/critical-fix` for urgent fixes
+
+## 12. Code Quality
+
+### Compiler Warnings
+- Treat warnings as errors (`-Werror`)
+- Fix all compiler warnings before committing
+- Use appropriate warning suppressions when necessary
+
+### Static Analysis
+- Run static analysis tools regularly
+- Fix identified issues
+- Document false positives
+
+### Testing
+- Test embedded code on target hardware
+- Verify peripheral interactions
+- Test error conditions
+
+## 13. Language-Specific Rules
+
+### C++ Features
+- Use C++20 standard
+- Prefer `nullptr` over `NULL`
+- Use RAII where appropriate
+- Avoid exceptions in embedded code
+
+### C Compatibility
+- Maintain C compatibility where needed
+- Use `extern "C"` blocks appropriately
+- Avoid C++ features that complicate C integration
+
+## 14. Code Review Guidelines
+
+### What to Check
+- [ ] Naming conventions followed
+- [ ] Code formatting consistent
+- [ ] Comments adequate and clear
+- [ ] Error handling appropriate
+- [ ] Memory management correct
+- [ ] Hardware interactions safe
+- [ ] Build system updated if needed
+
+### Automated Checks
+- Compiler warnings/errors
+- Static analysis results
+- Code formatting compliance
+- Build success on all targets
