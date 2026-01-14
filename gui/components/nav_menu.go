@@ -2,22 +2,29 @@ package components
 
 import (
 	"pm/gui/subcomponents"
+	"pm/gui/themes"
 
 	"fyne.io/fyne/v2"
 	"fyne.io/fyne/v2/container"
+	"fyne.io/fyne/v2/theme"
 	"fyne.io/fyne/v2/widget"
 )
 
 type NavMenu struct {
+	Container     *fyne.Container
+	ContentWindow *ContentWindow
 }
 
-func NewNavMenuContainer() *fyne.Container {
+func NewNavMenu(contentWindow *ContentWindow) *NavMenu {
+	navMenu := &NavMenu{}
+	navMenu.ContentWindow = contentWindow
+
 	menuItems := createNavMenuItems()
 
 	list := widget.NewList(
 		func() int { return len(menuItems) },
 		func() fyne.CanvasObject {
-			return subcomponents.NewIconLabel(resourcePerformanceMonitorIco, "")
+			return subcomponents.NewIconLabel(theme.Current().Icon(themes.IconPerformanceMonitor), "")
 		},
 		func(lii widget.ListItemID, co fyne.CanvasObject) {
 			iconLabel := co.(*subcomponents.IconLabel)
@@ -25,19 +32,24 @@ func NewNavMenuContainer() *fyne.Container {
 			iconLabel.Label.SetText(menuItems[lii].Label.Text)
 		})
 
-	container := container.NewBorder(nil, nil, nil, nil, list)
-	// container.Resize(fyne.NewSize(128, float32(64*list.Length())))
+	list.OnSelected = func(id widget.ListItemID) {
+		navMenu.ContentWindow.ShowComponent(id)
+	}
 
-	return container
+	container := container.NewBorder(nil, nil, nil, nil, list)
+
+	navMenu.Container = container
+
+	return navMenu
 }
 
 func createNavMenuItems() []*subcomponents.IconLabel {
-	status := subcomponents.NewIconLabel(resourcePerformanceMonitorIco, "Status")
-	themes := subcomponents.NewIconLabel(resourcePerformanceMonitorIco, "Themes")
-	monitor := subcomponents.NewIconLabel(resourcePerformanceMonitorIco, "Monitor")
-	stream := subcomponents.NewIconLabel(resourcePerformanceMonitorIco, "Stream")
-	settings := subcomponents.NewIconLabel(resourcePerformanceMonitorIco, "Settings")
+	status := subcomponents.NewIconLabel(theme.Current().Icon(themes.IconPerformanceMonitor), "Status")
+	customize := subcomponents.NewIconLabel(theme.Current().Icon(themes.IconPerformanceMonitor), "Customize")
+	monitor := subcomponents.NewIconLabel(theme.Current().Icon(themes.IconPerformanceMonitor), "Monitor")
+	stream := subcomponents.NewIconLabel(theme.Current().Icon(themes.IconPerformanceMonitor), "Stream")
+	settings := subcomponents.NewIconLabel(theme.Current().Icon(themes.IconPerformanceMonitor), "Settings")
 
-	items := []*subcomponents.IconLabel{status, themes, monitor, stream, settings}
+	items := []*subcomponents.IconLabel{status, customize, monitor, stream, settings}
 	return items
 }

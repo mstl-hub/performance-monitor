@@ -1,16 +1,27 @@
 package gui
 
 import (
+	"embed"
 	"pm/device"
 	"pm/gui/components"
+	"pm/gui/themes"
 
 	"fyne.io/fyne/v2"
 	"fyne.io/fyne/v2/app"
 	"fyne.io/fyne/v2/container"
+	"fyne.io/fyne/v2/lang"
 )
+
+//go:embed translation
+var translations embed.FS
 
 func Run() {
 	app := app.New()
+
+	lang.AddTranslationsFS(translations, "translation")
+
+	app.Settings().SetTheme(themes.NewAppTheme())
+
 	device := device.Device{
 		IsConnected: true,
 	}
@@ -26,10 +37,11 @@ func Run() {
 }
 
 func createWindowContent(device *device.Device) *fyne.Container {
-	navMenu := components.NewNavMenuContainer()
 	contentWindow := components.NewContentWindow(device)
+	navMenu := components.NewNavMenu(contentWindow)
+	navMenu.ContentWindow = contentWindow
 
-	split := container.NewHSplit(navMenu, contentWindow.Container)
+	split := container.NewHSplit(navMenu.Container, contentWindow.Container)
 	split.SetOffset(0.25)
 	mainContainer := container.NewPadded(split)
 
