@@ -22,14 +22,14 @@ func Run() {
 
 	app.Settings().SetTheme(themes.NewAppTheme())
 
-	device := device.Device{
+	device := &device.Device{
 		IsConnected: true,
 	}
 	window := app.NewWindow("MSTL Performance Monitor")
 	// colorScheme := colorschemes.GetColorScheme(colorschemes.ColorSchemeLight)
 
 	// topMenu := components.TopMenu.CreateComponent(components.TopMenu{}, &device, &colorScheme)
-	windowContent := createWindowContent(&device)
+	windowContent := createWindowContent(device)
 
 	window.Resize(fyne.NewSize(1280, 720))
 	window.SetContent(windowContent)

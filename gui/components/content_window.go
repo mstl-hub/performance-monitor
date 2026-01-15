@@ -13,30 +13,26 @@ type ContentWindow struct {
 }
 
 func NewContentWindow(device *device.Device) *ContentWindow {
-	contentWindow := &ContentWindow{}
-	contentWindow.Device = device
-	contentWindow.Container = contentWindow.createContainer()
-	
-	return contentWindow
+	cw := &ContentWindow{}
+	cw.Device = device
+	cw.Container = cw.createContainer()
+	cw.ShowComponent(0)
+
+	return cw
 }
 
-func (contentWindow *ContentWindow) createContainer() *fyne.Container {
-	statusWindow := NewStatusWindow(contentWindow.Device)
+func (cw *ContentWindow) createContainer() *fyne.Container {
+	statusWindow := NewStatusWindow(cw.Device)
+	customizationWindow := NewCustomizationWindow(cw.Device)
 
-	container := container.NewStack(statusWindow.Container)
+	container := container.NewStack(statusWindow.Container, customizationWindow.Container)
 
 	return container
 }
 
-func (contentWindow *ContentWindow) createItems() []*fyne.Container {
-	statusWindow := NewStatusWindow(contentWindow.Device)
-
-	return []*fyne.Container{statusWindow.Container}
-}
-
-func (contentWindow *ContentWindow) ShowComponent(id int) {
-	for _, obj := range contentWindow.Container.Objects {
+func (cw *ContentWindow) ShowComponent(id int) {
+	for _, obj := range cw.Container.Objects {
 		obj.Hide()
 	}
-	contentWindow.Container.Objects[id].Show()
+	cw.Container.Objects[id].Show()
 }
