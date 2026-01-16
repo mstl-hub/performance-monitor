@@ -2,6 +2,7 @@ package components
 
 import (
 	"pm/device"
+	"pm/gui/profile"
 
 	"fyne.io/fyne/v2"
 	"fyne.io/fyne/v2/container"
@@ -9,12 +10,14 @@ import (
 
 type ContentWindow struct {
 	Device    *device.Device
+	Profiles  *profile.Profiles
 	Container *fyne.Container
 }
 
-func NewContentWindow(device *device.Device) *ContentWindow {
+func NewContentWindow(device *device.Device, profiles *profile.Profiles) *ContentWindow {
 	cw := &ContentWindow{}
 	cw.Device = device
+	cw.Profiles = profiles
 	cw.Container = cw.createContainer()
 	cw.ShowComponent(0)
 
@@ -23,7 +26,7 @@ func NewContentWindow(device *device.Device) *ContentWindow {
 
 func (cw *ContentWindow) createContainer() *fyne.Container {
 	statusWindow := NewStatusWindow(cw.Device)
-	customizationWindow := NewCustomizationWindow(cw.Device)
+	customizationWindow := NewCustomizationWindow(cw.Device, cw.Profiles)
 
 	container := container.NewStack(statusWindow.Container, customizationWindow.Container)
 

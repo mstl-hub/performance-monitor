@@ -4,6 +4,7 @@ import (
 	"embed"
 	"pm/device"
 	"pm/gui/components"
+	"pm/gui/profile"
 	"pm/gui/themes"
 
 	"fyne.io/fyne/v2"
@@ -25,19 +26,22 @@ func Run() {
 	device := &device.Device{
 		IsConnected: true,
 	}
+
+	profiles := &profile.Profiles{}
+
 	window := app.NewWindow("MSTL Performance Monitor")
 	// colorScheme := colorschemes.GetColorScheme(colorschemes.ColorSchemeLight)
 
 	// topMenu := components.TopMenu.CreateComponent(components.TopMenu{}, &device, &colorScheme)
-	windowContent := createWindowContent(device)
+	windowContent := createWindowContent(device, profiles)
 
 	window.Resize(fyne.NewSize(1280, 720))
 	window.SetContent(windowContent)
 	window.ShowAndRun()
 }
 
-func createWindowContent(device *device.Device) *fyne.Container {
-	contentWindow := components.NewContentWindow(device)
+func createWindowContent(device *device.Device, profiles *profile.Profiles) *fyne.Container {
+	contentWindow := components.NewContentWindow(device, profiles)
 	navMenu := components.NewNavMenu(contentWindow)
 	navMenu.ContentWindow = contentWindow
 

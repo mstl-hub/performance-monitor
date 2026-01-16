@@ -24,7 +24,7 @@ func NewIconLabel(resource fyne.Resource, text string) *IconLabel {
 	return iconLabel
 }
 
-func (iconLabel *IconLabel) CreateRenderer() fyne.WidgetRenderer {
-	container := container.NewHBox(iconLabel.Icon, iconLabel.Label)
+func (il *IconLabel) CreateRenderer() fyne.WidgetRenderer {
+	container := container.NewHBox(il.Icon, il.Label)
 	return widget.NewSimpleRenderer(container)
 }

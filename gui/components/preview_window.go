@@ -8,8 +8,8 @@ import (
 )
 
 type PreviewWindow struct {
-	Device          *device.Device
-	Container       *fyne.Container
+	Device    *device.Device
+	Container *fyne.Container
 }
 
 func NewPreviewWindow(device *device.Device) *PreviewWindow {
@@ -20,4 +20,12 @@ func NewPreviewWindow(device *device.Device) *PreviewWindow {
 	pw.Container = container
 
 	return pw
+}
+
+func (p PreviewWindow) SetDeviceTheme(index device.DeviceTheme) {
+	panic("unimplemented")
+}
+
+func (p PreviewWindow) SetImage(image []byte) {
+	panic("unimplemented")
 }

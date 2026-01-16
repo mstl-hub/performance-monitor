@@ -2,6 +2,7 @@ package components
 
 import (
 	"pm/device"
+	"pm/gui/profile"
 
 	"fyne.io/fyne/v2"
 	"fyne.io/fyne/v2/container"
@@ -9,16 +10,18 @@ import (
 
 type CustomizationWindow struct {
 	Device          *device.Device
+	Profiles        *profile.Profiles
 	Container       *fyne.Container
 	CustomizatonBar *CustomizationBar
 	PreviewWindow   *PreviewWindow
 }
 
-func NewCustomizationWindow(device *device.Device) *CustomizationWindow {
+func NewCustomizationWindow(device *device.Device, profiles *profile.Profiles) *CustomizationWindow {
 	cw := &CustomizationWindow{}
 	cw.Device = device
-	cw.CustomizatonBar = NewCustomizationBar(cw.Device)
+	cw.Profiles = profiles
 	cw.PreviewWindow = NewPreviewWindow(cw.Device)
+	cw.CustomizatonBar = NewCustomizationBar(cw.Device, cw.Profiles, cw.PreviewWindow)
 
 	container := container.NewVBox(cw.CustomizatonBar.Container, cw.PreviewWindow.Container)
 	cw.Container = container
