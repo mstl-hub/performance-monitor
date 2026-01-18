@@ -28,15 +28,23 @@ func newColorsMap() map[fyne.ThemeColorName]color.Color {
 
 const (
 	IconPerformanceMonitor fyne.ThemeIconName = "IconPerformanceMonitor"
+	IconScreenSettings     fyne.ThemeIconName = "IconScreenSettings"
 	IconShieldCheck        fyne.ThemeIconName = "IconShieldCheck"
 	IconShieldX            fyne.ThemeIconName = "IconShieldX"
+	IconColorManagement    fyne.ThemeIconName = "IconColorManagement"
+	IconControlPanelColor  fyne.ThemeIconName = "IconControlPanel"
+	IconNotebookGreen      fyne.ThemeIconName = "IconNotebookGreen"
 )
 
 func newIconsMap() map[fyne.ThemeIconName]fyne.Resource {
 	m := make(map[fyne.ThemeIconName]fyne.Resource)
 	m[IconPerformanceMonitor] = resourcePerformanceMonitorIco
+	m[IconScreenSettings] = resourceScreenSettingsIco
 	m[IconShieldCheck] = resourceShieldCheckIco
 	m[IconShieldX] = resourceShieldXIco
+	m[IconColorManagement] = resourceColorManagementIco
+	m[IconControlPanelColor] = resourceControlPanelColorIco
+	m[IconNotebookGreen] = resourceNotebookGreenIco
 
 	return m
 }

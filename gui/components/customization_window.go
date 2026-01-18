@@ -12,8 +12,8 @@ type CustomizationWindow struct {
 	Device          *device.Device
 	Profiles        *profile.Profiles
 	Container       *fyne.Container
-	CustomizatonBar *CustomizationBar
 	PreviewWindow   *PreviewWindow
+	CustomizatonBar *CustomizationBar
 }
 
 func NewCustomizationWindow(device *device.Device, profiles *profile.Profiles) *CustomizationWindow {

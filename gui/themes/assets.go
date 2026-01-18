@@ -8,11 +8,39 @@ import (
 	"fyne.io/fyne/v2"
 )
 
+//go:embed assets\ColorManagement.ico
+var resourceColorManagementIcoData []byte
+var resourceColorManagementIco = &fyne.StaticResource{
+	StaticName:    "assets\\ColorManagement.ico",
+	StaticContent: resourceColorManagementIcoData,
+}
+
+//go:embed assets\ControlPanelColor.ico
+var resourceControlPanelColorIcoData []byte
+var resourceControlPanelColorIco = &fyne.StaticResource{
+	StaticName:    "assets\\ControlPanelColor.ico",
+	StaticContent: resourceControlPanelColorIcoData,
+}
+
+//go:embed assets\NotebookGreen.ico
+var resourceNotebookGreenIcoData []byte
+var resourceNotebookGreenIco = &fyne.StaticResource{
+	StaticName:    "assets\\NotebookGreen.ico",
+	StaticContent: resourceNotebookGreenIcoData,
+}
+
 //go:embed assets\PerformanceMonitor.ico
 var resourcePerformanceMonitorIcoData []byte
 var resourcePerformanceMonitorIco = &fyne.StaticResource{
 	StaticName:    "assets\\PerformanceMonitor.ico",
 	StaticContent: resourcePerformanceMonitorIcoData,
+}
+
+//go:embed assets\ScreenSettings.ico
+var resourceScreenSettingsIcoData []byte
+var resourceScreenSettingsIco = &fyne.StaticResource{
+	StaticName:    "assets\\ScreenSettings.ico",
+	StaticContent: resourceScreenSettingsIcoData,
 }
 
 //go:embed assets\ShieldCheck.ico

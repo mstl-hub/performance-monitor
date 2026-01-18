@@ -23,9 +23,9 @@ func NewPreviewWindow(device *device.Device) *PreviewWindow {
 }
 
 func (p PreviewWindow) SetDeviceTheme(index device.DeviceTheme) {
-	panic("unimplemented")
+	return
 }
 
 func (p PreviewWindow) SetImage(image []byte) {
-	panic("unimplemented")
+	return
 }

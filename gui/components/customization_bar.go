@@ -27,8 +27,7 @@ func NewCustomizationBar(device *device.Device, profiles *profile.Profiles, prev
 	cb.Profiles = profiles
 	cb.PreviewWindow = previewWindow
 
-	container := container.NewBorder(nil, nil, nil, nil, nil)
-	cb.Container = container
+	cb.Container = cb.createContainer()
 
 	return cb
 }
@@ -39,18 +38,18 @@ func (cb *CustomizationBar) createContainer() *fyne.Container {
 	loadImageButton := &widget.Button{}
 	saveChangesButton := &subcomponents.TappableIcon{}
 
-	deviceThemesIcon.SetResource(theme.Current().Icon(themes.IconPerformanceMonitor))
+	deviceThemesIcon.SetResource(theme.Current().Icon(themes.IconControlPanelColor))
 
 	deviceThemesSelect.SetOptions(cb.Device.Themes)
 	deviceThemesSelect.OnChanged = func(s string) {
-		index := device.DeviceTheme(deviceThemesSelect.SelectedIndex())
-		cb.PreviewWindow.SetDeviceTheme(index)
-		cb.Profiles.Selected().DeviceTheme = index
+		deviceTheme := device.DeviceTheme(deviceThemesSelect.SelectedIndex())
+		cb.PreviewWindow.SetDeviceTheme(deviceTheme)
+		cb.Profiles.Selected().DeviceTheme = deviceTheme
 	}
 
 	loadImageButton.SetText(lang.L("Image"))
 	loadImageButton.Alignment = widget.ButtonAlignCenter
-	loadImageButton.Icon = theme.Current().Icon(themes.IconPerformanceMonitor)
+	loadImageButton.Icon = theme.Current().Icon(themes.IconColorManagement)
 	loadImageButton.IconPlacement = widget.ButtonIconLeadingText
 	loadImageButton.OnTapped = func() {
 		dialog.ShowFileOpen(func(reader fyne.URIReadCloser, err error) {
@@ -67,7 +66,7 @@ func (cb *CustomizationBar) createContainer() *fyne.Container {
 		}, fyne.CurrentApp().Driver().AllWindows()[0])
 	}
 
-	saveChangesButton.Icon.SetResource(theme.Current().Icon(themes.IconPerformanceMonitor))
+	saveChangesButton = subcomponents.NewTappableIcon(theme.Current().Icon(themes.IconNotebookGreen))
 	saveChangesButton.OnTapped = func() {
 		cb.Profiles.SaveSelected()
 	}
